@@ -640,37 +640,171 @@
 </footer>
 
 <script>
-  const langToggle = document.getElementById('langToggle');
-  const themeToggle = document.getElementById('themeToggle');
+  // ─── DEFAULTS ────────────────────────────────────────────────────────────────
+  const DEFAULT = {
+    hero: {
+      name_tr: 'İremsu Kardaş', name_en: 'İremsu Kardaş',
+      title_tr: 'Business Analyst & Product Owner', title_en: 'Business Analyst & Product Owner',
+      desc_tr: 'Ürün geliştirme süreçlerini uçtan uca yöneten, teknik ekiplerle iş paydaşları arasında köprü kuran ve veri odaklı kararlarla ürün değeri yaratan bir BA & PO.',
+      desc_en: 'An end-to-end product delivery professional bridging technical teams and business stakeholders, turning complex requirements into meaningful digital experiences with data-driven insight.',
+      stat_years: '4+', stat_certs: '3', stat_projects: '5+'
+    },
+    contact: { email: 'iremsukardas@gmail.com', phone: '+90 545 156 0017', linkedin: 'https://linkedin.com/in/iremsukardas', github: '', location_tr: 'İstanbul, Türkiye', location_en: 'Istanbul, Turkey' },
+    experience: [
+      { company: 'Garanti BBVA Technology', location: 'Istanbul, TR', period_tr: 'Ağu 2024 – Günümüz', period_en: 'Aug 2024 – Present', role_tr: 'Business Analyst & Product Owner', role_en: 'Business Analyst & Product Owner', body_tr: 'Mobil bankacılık uygulaması özelliklerinin uçtan uca teslimatını yönetiyor; ürün backlog\'larını ve yol haritalarını tanımlamak ve önceliklendirmek için paydaşlarla iş birliği yapıyor.', body_en: 'Leads end-to-end delivery of mobile banking features, collaborating with stakeholders to define and prioritize product backlogs and roadmaps.', tags: 'Agile / Scrum,Postman,Kibana,Splunk,Dataroid,SQL' },
+      { company: 'Kofana Digital', location: 'Istanbul, TR', period_tr: 'Ağu 2022 – Tem 2024', period_en: 'Aug 2022 – Jul 2024', role_tr: 'Business Analyst', role_en: 'Business Analyst', body_tr: 'Philip Morris International, Siemens ve Getir gibi farklı coğrafyalardaki müşteriler için iş analizi ve dokümantasyon hizmetleri sundu.', body_en: 'Delivered business analysis and documentation for clients across multiple geographies including Philip Morris International, Siemens, and Getir.', tags: 'Salesforce,Jira,Confluence,UAT' },
+      { company: 'SoftTech', location: 'Remote', period_tr: 'Haz 2021 – Eyl 2021', period_en: 'Jun 2021 – Sep 2021', role_tr: 'Yazılım Mühendisliği Stajyeri', role_en: 'Software Engineering Intern', body_tr: 'İç iş süreçlerini kolaylaştırmak için .NET full-stack web uygulaması geliştirdi.', body_en: 'Developed and deployed a .NET full-stack web application to streamline internal business processes.', tags: '.NET,C#,Flutter,JavaScript' }
+    ],
+    projects: [
+      { name_tr: 'Mobil Bankacılık Yeniden Tasarımı', name_en: 'Mobile Banking App Redesign', desc_tr: 'Garanti BBVA için sistem analizi ve test faaliyetleriyle geliştirilmiş onboarding deneyimi.', desc_en: 'Improved onboarding experience and app stability through system analysis and testing at Garanti BBVA.', tech: 'Garanti BBVA' },
+      { name_tr: 'UniFriend', name_en: 'UniFriend', desc_tr: 'Üniversite öğrencilerinin bölüm ve sınıfa göre bağlantı kurmasını sağlayan sosyal platform.', desc_en: 'Social platform enabling university students to connect by department and class.', tech: 'MVC .NET' },
+      { name_tr: 'Müşteri Segmentasyonu', name_en: 'Customer Segmentation', desc_tr: 'K-means kümeleme ve RFM skorlama uygulaması.', desc_en: 'Implemented k-means clustering and RFM scoring for user segmentation.', tech: 'Python · Looker Studio' },
+      { name_tr: 'Akademik İş İlanları Platformu', name_en: 'Academic Jobs Platform', desc_tr: 'Akademik profesyoneller için özelleştirilmiş iş arama platformu.', desc_en: 'Specialized job search platform for academic professionals.', tech: '.NET · C#' }
+    ],
+    skills: {
+      prog: ['Python','SQL','C / C++ / C#','.NET','HTML · CSS · JavaScript','Data Analysis','OOP · Algorithms'],
+      tools: ['Postman','Kibana','Splunk','Dataroid','Oracle','Jira · Confluence','Looker Studio'],
+      platforms: ['Salesforce','Analytical Thinking','Stakeholder Management','Team Leadership','Crisis Management','Communication & Presentation']
+    },
+    education: [
+      { school: 'İstanbul Teknik Üniversitesi', degree_tr: 'Bilgisayar Mühendisliği, Lisans', degree_en: 'B.Sc. Computer Engineering', gpa: '3.20', year: '2024' },
+      { school: 'İstanbul Teknik Üniversitesi', degree_tr: 'Endüstri Mühendisliği, Çift Anadal', degree_en: 'B.Sc. Industrial Engineering (Double Major)', gpa: '3.23', year: '2024' },
+      { school: 'Cracow University of Technology', degree_tr: 'Erasmus Değişim Programı', degree_en: 'Erasmus Exchange Program', gpa: '', year: '2022' }
+    ],
+    certifications: [
+      { name_tr: 'Professional Scrum Product Owner I', name_en: 'Professional Scrum Product Owner I', issuer: 'Scrum.org' },
+      { name_tr: 'Salesforce Administrator Sertifikası', name_en: 'Salesforce Administrator Certification', issuer: 'Salesforce' },
+      { name_tr: 'İş Analizi', name_en: 'Business Analysis', issuer: 'Mindset Institute' },
+      { name_tr: 'McKinsey Forward', name_en: 'McKinsey Forward', issuer: 'McKinsey Academy' },
+      { name_tr: 'Yapay Zekanın Uygulamaları', name_en: 'Applications of Artificial Intelligence', issuer: 'Sadi Evren Şeker' },
+      { name_tr: 'Dijital Pazarlama', name_en: 'Digital Marketing', issuer: 'ITU Alumni Student Club' }
+    ]
+  };
+
+  const D = JSON.parse(localStorage.getItem('portfolio_data') || 'null') || DEFAULT;
   let lang = 'en';
   let dark = false;
 
-  langToggle.addEventListener('click', () => {
-    lang = lang === 'en' ? 'tr' : 'en';
-    langToggle.textContent = lang === 'en' ? 'TR' : 'EN';
-    document.querySelectorAll('[data-en]').forEach(el => {
-      const val = el.getAttribute('data-' + lang);
-      if (val) el.innerHTML = val;
+  // ─── RENDER ──────────────────────────────────────────────────────────────────
+  function render() {
+    const h = D.hero;
+    const nameParts = h['name_' + lang].split(' ');
+    const first = nameParts[0], last = nameParts.slice(1).join(' ');
+    document.querySelector('.hero-name').innerHTML = `${first}<br><em>${last}</em>`;
+    document.querySelector('.hero-title').textContent = h['title_' + lang];
+    document.querySelector('.hero-desc').textContent = h['desc_' + lang];
+    document.querySelector('.hero-tag').textContent = D.contact['location_' + lang] + ' — ' + (lang === 'tr' ? 'Müsait' : 'Available');
+
+    const nums = document.querySelectorAll('.stat-num');
+    const labels = document.querySelectorAll('.stat-label');
+    if (nums[0]) nums[0].textContent = h.stat_years;
+    if (nums[2]) nums[3] && (nums[3].textContent = h.stat_projects);
+    if (labels[0]) labels[0].textContent = lang === 'tr' ? 'Yıl Deneyim' : 'Years Experience';
+
+    // Experience
+    const expGrid = document.querySelector('.exp-grid');
+    expGrid.innerHTML = D.experience.map(e => `
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="exp-company">${e.company}</p>
+          <p class="exp-period">${e['period_' + lang]}</p>
+          <p class="exp-location">${e.location}</p>
+        </div>
+        <div class="exp-content">
+          <h3 class="exp-role">${e['role_' + lang]}</h3>
+          <p class="exp-body">${e['body_' + lang]}</p>
+          <div class="exp-tags">${(e.tags || '').split(',').filter(Boolean).map(t => `<span class="tag">${t.trim()}</span>`).join('')}</div>
+        </div>
+      </div>`).join('');
+
+    // Projects
+    const projGrid = document.querySelector('.projects-grid');
+    projGrid.innerHTML = D.projects.map((p, i) => `
+      <div class="project-item">
+        <p class="project-num">${String(i+1).padStart(2,'0')}</p>
+        <h3 class="project-name">${p['name_' + lang]}</h3>
+        <p class="project-desc">${p['desc_' + lang]}</p>
+        <p class="project-tech">${p.tech}</p>
+      </div>`).join('');
+
+    // Skills
+    const sw = document.querySelector('.skills-wrapper');
+    const cats = [
+      { key: 'prog', label_tr: 'Programlama & Veri', label_en: 'Programming & Data' },
+      { key: 'tools', label_tr: 'Araçlar', label_en: 'Tools' },
+      { key: 'platforms', label_tr: 'Platformlar & Soft Beceriler', label_en: 'Platforms & Soft Skills' }
+    ];
+    sw.innerHTML = cats.map(c => `
+      <div class="skill-group">
+        <p class="skill-group-title">${c['label_' + lang]}</p>
+        <ul class="skill-list">${(D.skills[c.key] || []).map(s => `<li>${s}</li>`).join('')}</ul>
+      </div>`).join('');
+
+    // Education
+    const eduGrid = document.querySelector('.edu-grid');
+    eduGrid.innerHTML = D.education.map(e => `
+      <div class="edu-item">
+        <p class="edu-school">${e.school}</p>
+        <h3 class="edu-degree">${e['degree_' + lang]}</h3>
+        <p class="edu-detail">${e.gpa ? 'GPA ' + e.gpa + ' · ' : ''}${e.year}</p>
+      </div>`).join('');
+
+    // Certs
+    const certsList = document.querySelector('.certs-list');
+    certsList.innerHTML = D.certifications.map(c => `
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <p class="cert-name">${c['name_' + lang]}</p>
+          <p class="cert-issuer">${c.issuer}</p>
+        </div>
+      </div>`).join('');
+
+    // Contact
+    const cl = document.querySelector('.contact-links');
+    const c = D.contact;
+    let links = '';
+
+    if (c.email) links += `<a class="contact-link" href="mailto:${c.email}"><span class="contact-link-label">${lang==='tr'?'E-Posta':'Email'}</span><span class="contact-link-val">${c.email}</span></a>`;
+    if (c.linkedin) links += `<a class="contact-link" href="${c.linkedin}" target="_blank"><span class="contact-link-label">LinkedIn</span><span class="contact-link-val">${c.linkedin.replace('https://','')}</span></a>`;
+    if (c.github) links += `<a class="contact-link" href="${c.github}" target="_blank"><span class="contact-link-label">GitHub</span><span class="contact-link-val">${c.github.replace('https://','')}</span></a>`;
+    links += `<div class="contact-link" style="cursor:default"><span class="contact-link-label">${lang==='tr'?'Konum':'Location'}</span><span class="contact-link-val">${c['location_' + lang]}</span></div>`;
+    links += `<div class="contact-link" style="cursor:default;border-bottom:none"><span class="contact-link-label">${lang==='tr'?'Diller':'Languages'}</span><span class="contact-link-val">${lang==='tr'?'İngilizce (İleri), Türkçe (Anadil)':'English (Professional), Turkish (Native)'}</span></div>`;
+    cl.innerHTML = links;
+
+    // Contact headline
+    document.querySelector('.contact-headline').innerHTML = lang === 'tr' ? "Birlikte<br><em>çalışalım</em>" : "Let's work<br><em>together</em>";
+
+    // Nav labels
+    const navLabels = [['Deneyim','Experience'],['Projeler','Projects'],['Yetenekler','Skills'],['Eğitim','Education'],['İletişim','Contact']];
+    document.querySelectorAll('.nav-links a').forEach((a, i) => {
+      if (navLabels[i]) a.textContent = lang === 'tr' ? navLabels[i][0] : navLabels[i][1];
     });
+  }
+
+  // ─── LANG / THEME ─────────────────────────────────────────────────────────
+  document.getElementById('langToggle').addEventListener('click', () => {
+    lang = lang === 'en' ? 'tr' : 'en';
+    document.getElementById('langToggle').textContent = lang === 'en' ? 'TR' : 'EN';
+    render();
   });
 
-  themeToggle.addEventListener('click', () => {
+  document.getElementById('themeToggle').addEventListener('click', () => {
     dark = !dark;
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
   });
 
-  // Smooth scroll offset for fixed nav
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const id = a.getAttribute('href').slice(1);
-      if (!id) return;
-      const el = document.getElementById(id);
-      if (el) {
-        e.preventDefault();
-        window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' });
-      }
-    });
+  // Smooth scroll
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) { e.preventDefault(); window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' }); }
   });
+
+  render();
 </script>
 </body>
 </html>
