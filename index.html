@@ -667,9 +667,9 @@
       platforms: ['Salesforce','Analytical Thinking','Stakeholder Management','Team Leadership','Crisis Management','Communication & Presentation']
     },
     education: [
-      { school: 'İstanbul Teknik Üniversitesi', degree_tr: 'Bilgisayar Mühendisliği, Lisans', degree_en: 'B.Sc. Computer Engineering', gpa: '3.20', year: '2024' },
-      { school: 'İstanbul Teknik Üniversitesi', degree_tr: 'Endüstri Mühendisliği, Çift Anadal', degree_en: 'B.Sc. Industrial Engineering (Double Major)', gpa: '3.23', year: '2024' },
-      { school: 'Cracow University of Technology', degree_tr: 'Erasmus Değişim Programı', degree_en: 'Erasmus Exchange Program', gpa: '', year: '2022' }
+      { school_tr: 'İstanbul Teknik Üniversitesi', school_en: 'Istanbul Technical University', degree_tr: 'Bilgisayar Mühendisliği, Lisans', degree_en: 'B.Sc. Computer Engineering', gpa: '3.20', year: '2024' },
+      { school_tr: 'İstanbul Teknik Üniversitesi', school_en: 'Istanbul Technical University', degree_tr: 'Endüstri Mühendisliği, Çift Anadal', degree_en: 'B.Sc. Industrial Engineering (Double Major)', gpa: '3.23', year: '2024' },
+      { school_tr: 'Krakow Teknoloji Üniversitesi', school_en: 'Cracow University of Technology', degree_tr: 'Erasmus Değişim Programı', degree_en: 'Erasmus Exchange Program', gpa: '', year: '2022' }
     ],
     certifications: [
       { name_tr: 'Professional Scrum Product Owner I', name_en: 'Professional Scrum Product Owner I', issuer: 'Scrum.org' },
@@ -766,7 +766,7 @@
     const eduGrid = document.querySelector('.edu-grid');
     eduGrid.innerHTML = D.education.map(e => `
       <div class="edu-item">
-        <p class="edu-school">${e.school}</p>
+        <p class="edu-school">${e['school_' + lang] || e.school}</p>
         <h3 class="edu-degree">${e['degree_' + lang]}</h3>
         <p class="edu-detail">${e.gpa ? 'GPA ' + e.gpa + ' · ' : ''}${e.year}</p>
       </div>`).join('');
