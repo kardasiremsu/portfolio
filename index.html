@@ -215,10 +215,10 @@
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
   }
   .skill-group {
-    padding: 2rem 2rem 2rem 0; border-right: 1px solid var(--line);
+    padding: 2rem; border-right: 1px solid var(--line);
   }
+  .skill-group:first-child { padding-left: 0; }
   .skill-group:last-child { border-right: none; padding-right: 0; }
-  .skill-group:not(:first-child) { padding-left: 2rem; }
   .skill-group-title {
     font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--accent); font-weight: 500; margin-bottom: 1.2rem;
@@ -342,9 +342,11 @@
     .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
     .exp-meta { padding-bottom: 0.5rem; border-bottom: 1px solid var(--line); }
     .skills-wrapper, .edu-grid { grid-template-columns: 1fr; }
-    .skill-group { border-right: none; padding-left: 0; padding-right: 0; border-bottom: 1px solid var(--line); }
-    .skill-group:last-child { border-bottom: none; }
-    .edu-item { border-right: none; padding-left: 0; padding-right: 0; border-bottom: 1px solid var(--line); }
+    .skill-group { border-right: none; border-bottom: 1px solid var(--line); padding: 1.5rem 0; }
+    .skill-group:first-child { padding-top: 0; }
+    .skill-group:last-child { border-bottom: none; padding-right: 0; }
+    .edu-item { border-right: none; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+    .edu-item:first-child { padding-top: 0; }
     .edu-item:last-child { border-bottom: none; }
     .projects-grid { grid-template-columns: 1fr; }
     .project-item { border-right: none !important; }
