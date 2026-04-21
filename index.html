@@ -357,8 +357,8 @@
     <p class="hero-title" data-tr="Business Analyst & Product Owner" data-en="Business Analyst & Product Owner">Business Analyst & Product Owner</p>
     <p class="hero-desc" data-tr="Ürün geliştirme süreçlerini uçtan uca yöneten, teknik ekiplerle iş paydaşları arasında köprü kuran ve veri odaklı kararlarla ürün değeri yaratan bir BA & PO." data-en="An end-to-end product delivery professional bridging technical teams and business stakeholders, turning complex requirements into meaningful digital experiences with data-driven insight.">An end-to-end product delivery professional bridging technical teams and business stakeholders, turning complex requirements into meaningful digital experiences with data-driven insight.</p>
     <div class="hero-cta">
-      <a href="#contact" class="btn-primary" data-tr="İletişime Geç" data-en="Get in Touch">Get in Touch</a>
-      <a href="#experience" class="btn-secondary" data-tr="Deneyime Bak →" data-en="View Experience →">View Experience →</a>
+      <a href="#contact" class="btn-primary" id="cta-primary">Get in Touch</a>
+      <a href="#experience" class="btn-secondary" id="cta-secondary">View Experience →</a>
     </div>
   </div>
   <div class="hero-right">
@@ -555,7 +555,7 @@
   </div>
 
   <div style="margin-top: 4rem;">
-    <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;" data-tr="Sertifikalar" data-en="Certifications">Certifications</p>
+    <p class="cert-heading" style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;">Certifications</p>
     <div class="certs-list">
       <div class="cert-item">
         <div class="cert-dot"></div>
@@ -644,16 +644,16 @@
   const DEFAULT = {
     hero: {
       name_tr: 'İremsu Kardaş', name_en: 'İremsu Kardaş',
-      title_tr: 'Business Analyst & Product Owner', title_en: 'Business Analyst & Product Owner',
+      title_tr: 'İş Analisti & Ürün Sahibi', title_en: 'Business Analyst & Product Owner',
       desc_tr: 'Ürün geliştirme süreçlerini uçtan uca yöneten, teknik ekiplerle iş paydaşları arasında köprü kuran ve veri odaklı kararlarla ürün değeri yaratan bir BA & PO.',
       desc_en: 'An end-to-end product delivery professional bridging technical teams and business stakeholders, turning complex requirements into meaningful digital experiences with data-driven insight.',
       stat_years: '4+', stat_certs: '3', stat_projects: '5+'
     },
     contact: { email: 'iremsukardas@gmail.com', phone: '+90 545 156 0017', linkedin: 'https://linkedin.com/in/iremsukardas', github: '', location_tr: 'İstanbul, Türkiye', location_en: 'Istanbul, Turkey' },
     experience: [
-      { company: 'Garanti BBVA Technology', location: 'Istanbul, TR', period_tr: 'Ağu 2024 – Günümüz', period_en: 'Aug 2024 – Present', role_tr: 'Business Analyst & Product Owner', role_en: 'Business Analyst & Product Owner', body_tr: 'Mobil bankacılık uygulaması özelliklerinin uçtan uca teslimatını yönetiyor; ürün backlog\'larını ve yol haritalarını tanımlamak ve önceliklendirmek için paydaşlarla iş birliği yapıyor.', body_en: 'Leads end-to-end delivery of mobile banking features, collaborating with stakeholders to define and prioritize product backlogs and roadmaps.', tags: 'Agile / Scrum,Postman,Kibana,Splunk,Dataroid,SQL' },
-      { company: 'Kofana Digital', location: 'Istanbul, TR', period_tr: 'Ağu 2022 – Tem 2024', period_en: 'Aug 2022 – Jul 2024', role_tr: 'Business Analyst', role_en: 'Business Analyst', body_tr: 'Philip Morris International, Siemens ve Getir gibi farklı coğrafyalardaki müşteriler için iş analizi ve dokümantasyon hizmetleri sundu.', body_en: 'Delivered business analysis and documentation for clients across multiple geographies including Philip Morris International, Siemens, and Getir.', tags: 'Salesforce,Jira,Confluence,UAT' },
-      { company: 'SoftTech', location: 'Remote', period_tr: 'Haz 2021 – Eyl 2021', period_en: 'Jun 2021 – Sep 2021', role_tr: 'Yazılım Mühendisliği Stajyeri', role_en: 'Software Engineering Intern', body_tr: 'İç iş süreçlerini kolaylaştırmak için .NET full-stack web uygulaması geliştirdi.', body_en: 'Developed and deployed a .NET full-stack web application to streamline internal business processes.', tags: '.NET,C#,Flutter,JavaScript' }
+      { company: 'Garanti BBVA Technology', location: 'Istanbul, TR', period_tr: 'Ağu 2024 – Günümüz', period_en: 'Aug 2024 – Present', role_tr: 'İş Analisti & Ürün Sahibi', role_en: 'Business Analyst & Product Owner', body_tr: 'Mobil bankacılık uygulaması özelliklerinin uçtan uca teslimatını yönetiyor; ürün backlog\'larını ve yol haritalarını tanımlamak ve önceliklendirmek için paydaşlarla iş birliği yapıyor.', body_en: 'Leads end-to-end delivery of mobile banking features, collaborating with stakeholders to define and prioritize product backlogs and roadmaps.', tags: 'Agile / Scrum,Postman,Kibana,Splunk,Dataroid,SQL' },
+      { company: 'Kofana Digital', location: 'Istanbul, TR', period_tr: 'Ağu 2022 – Tem 2024', period_en: 'Aug 2022 – Jul 2024', role_tr: 'İş Analisti', role_en: 'Business Analyst', body_tr: 'Philip Morris International, Siemens ve Getir gibi farklı coğrafyalardaki müşteriler için iş analizi ve dokümantasyon hizmetleri sundu.', body_en: 'Delivered business analysis and documentation for clients across multiple geographies including Philip Morris International, Siemens, and Getir.', tags: 'Salesforce,Jira,Confluence,UAT' },
+      { company: 'SoftTech', location_tr: 'Uzaktan', location_en: 'Remote', period_tr: 'Haz 2021 – Eyl 2021', period_en: 'Jun 2021 – Sep 2021', role_tr: 'Yazılım Mühendisliği Stajyeri', role_en: 'Software Engineering Intern', body_tr: 'İç iş süreçlerini kolaylaştırmak için .NET full-stack web uygulaması geliştirdi.', body_en: 'Developed and deployed a .NET full-stack web application to streamline internal business processes.', tags: '.NET,C#,Flutter,JavaScript' }
     ],
     projects: [
       { name_tr: 'Mobil Bankacılık Yeniden Tasarımı', name_en: 'Mobile Banking App Redesign', desc_tr: 'Garanti BBVA için sistem analizi ve test faaliyetleriyle geliştirilmiş onboarding deneyimi.', desc_en: 'Improved onboarding experience and app stability through system analysis and testing at Garanti BBVA.', tech: 'Garanti BBVA' },
@@ -698,8 +698,28 @@
     const nums = document.querySelectorAll('.stat-num');
     const labels = document.querySelectorAll('.stat-label');
     if (nums[0]) nums[0].textContent = h.stat_years;
-    if (nums[2]) nums[3] && (nums[3].textContent = h.stat_projects);
-    if (labels[0]) labels[0].textContent = lang === 'tr' ? 'Yıl Deneyim' : 'Years Experience';
+    if (nums[3]) nums[3].textContent = h.stat_projects;
+    const statTexts = lang === 'tr'
+      ? ['Yıl Deneyim','Sertifika','Çift Anadal','Büyük Proje']
+      : ['Years Experience','Certifications','Double Major','Major Projects'];
+    labels.forEach((l, i) => { if (statTexts[i]) l.textContent = statTexts[i]; });
+
+    // Section titles
+    const sectionTitles = lang === 'tr'
+      ? ['Deneyim','Projeler','Yetenekler','Eğitim','İletişim']
+      : ['Experience','Projects','Skills','Education','Contact'];
+    document.querySelectorAll('.section-title').forEach((el, i) => {
+      if (sectionTitles[i]) el.textContent = sectionTitles[i];
+    });
+
+    // Certs sub-heading
+    const certHeading = document.querySelector('.cert-heading');
+    if (certHeading) certHeading.textContent = lang === 'tr' ? 'Sertifikalar' : 'Certifications';
+
+    // Footer
+    const footerItems = document.querySelectorAll('.footer-copy');
+    if (footerItems[0]) footerItems[0].textContent = lang === 'tr' ? '© 2025 İremsu Kardaş. Tüm hakları saklıdır.' : '© 2025 İremsu Kardaş. All rights reserved.';
+    if (footerItems[1]) footerItems[1].textContent = lang === 'tr' ? 'İstanbul, Türkiye' : 'Istanbul, Turkey';
 
     // Experience
     const expGrid = document.querySelector('.exp-grid');
@@ -708,7 +728,7 @@
         <div class="exp-meta">
           <p class="exp-company">${e.company}</p>
           <p class="exp-period">${e['period_' + lang]}</p>
-          <p class="exp-location">${e.location}</p>
+          <p class="exp-location">${e['location_' + lang] || e.location}</p>
         </div>
         <div class="exp-content">
           <h3 class="exp-role">${e['role_' + lang]}</h3>
@@ -774,6 +794,12 @@
 
     // Contact headline
     document.querySelector('.contact-headline').innerHTML = lang === 'tr' ? "Birlikte<br><em>çalışalım</em>" : "Let's work<br><em>together</em>";
+
+    // CTA buttons
+    const ctaPrimary = document.getElementById('cta-primary');
+    const ctaSecondary = document.getElementById('cta-secondary');
+    if (ctaPrimary) ctaPrimary.textContent = lang === 'tr' ? 'İletişime Geç' : 'Get in Touch';
+    if (ctaSecondary) ctaSecondary.textContent = lang === 'tr' ? 'Deneyime Bak →' : 'View Experience →';
 
     // Nav labels
     const navLabels = [['Deneyim','Experience'],['Projeler','Projects'],['Yetenekler','Skills'],['Eğitim','Education'],['İletişim','Contact']];
