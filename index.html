@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İremsu Kardaş – Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F5F0;
+    --bg2: #EFECE5;
+    --text: #1A1814;
+    --text2: #6B6760;
+    --text3: #9A9691;
+    --accent: #1B3A6B;
+    --accent2: #2D5FA3;
+    --line: rgba(26,24,20,0.12);
+    --card: #FFFFFF;
+  }
+  [data-theme="dark"] {
+    --bg: #141210;
+    --bg2: #1E1C19;
+    --text: #F0EDE6;
+    --text2: #A09C96;
+    --text3: #6B6760;
+    --accent: #6B93D6;
+    --accent2: #2D5FA3;
+    --line: rgba(240,237,230,0.1);
+    --card: #1E1C19;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    transition: background 0.3s;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--text2); text-decoration: none; font-size: 13px;
+    font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-controls { display: flex; align-items: center; gap: 1rem; }
+  .lang-btn, .theme-btn {
+    background: none; border: 1px solid var(--line);
+    color: var(--text2); font-family: 'DM Sans', sans-serif;
+    font-size: 12px; padding: 4px 10px; cursor: pointer;
+    border-radius: 2px; transition: all 0.2s; letter-spacing: 0.04em;
+  }
+  .lang-btn:hover, .theme-btn:hover { border-color: var(--text2); color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 3rem 6rem 3rem;
+    border-right: 1px solid var(--line);
+  }
+  .hero-tag {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--text); margin-bottom: 0.5rem;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--accent);
+  }
+  .hero-title {
+    font-size: 1rem; color: var(--text2); font-weight: 300;
+    margin-bottom: 2.5rem; letter-spacing: 0.01em;
+  }
+  .hero-desc {
+    font-size: 15px; color: var(--text2); max-width: 440px;
+    line-height: 1.8; margin-bottom: 3rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; align-items: center;
+  }
+  .btn-primary {
+    background: var(--text); color: var(--bg);
+    padding: 12px 28px; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.8; }
+  .btn-secondary {
+    color: var(--text2); text-decoration: none; font-size: 13px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--text); border-color: var(--text); }
+  .hero-right {
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 6rem 3rem;
+    position: relative;
+  }
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .stat-item {
+    padding: 2rem; border-top: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+  .stat-item:nth-child(even) { border-right: none; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem; color: var(--text); display: block;
+    line-height: 1; margin-bottom: 0.4rem;
+  }
+  .stat-label { font-size: 12px; color: var(--text3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .hero-location {
+    position: absolute; top: 6rem; right: 3rem;
+    font-size: 12px; color: var(--text3); letter-spacing: 0.08em;
+    text-transform: uppercase; writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; border-top: 1px solid var(--line); }
+  .section-header {
+    display: flex; align-items: baseline; gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  .section-num {
+    font-size: 11px; color: var(--text3); letter-spacing: 0.1em;
+    font-weight: 400;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    color: var(--text); letter-spacing: -0.01em;
+  }
+
+  /* EXPERIENCE */
+  .exp-grid { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid var(--line);
+  }
+  .exp-item:first-child { padding-top: 0; }
+  .exp-meta { padding-top: 0.2rem; }
+  .exp-company {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+  }
+  .exp-period { font-size: 12px; color: var(--text3); }
+  .exp-location { font-size: 12px; color: var(--text3); margin-top: 0.2rem; }
+  .exp-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; color: var(--text);
+    margin-bottom: 1rem; letter-spacing: -0.01em;
+  }
+  .exp-body { font-size: 14px; color: var(--text2); line-height: 1.8; }
+  .exp-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;
+  }
+  .tag {
+    font-size: 11px; padding: 3px 10px;
+    border: 1px solid var(--line); color: var(--text3);
+    letter-spacing: 0.04em; border-radius: 2px;
+  }
+
+  /* SKILLS */
+  .skills-wrapper {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  }
+  .skill-group {
+    padding: 2rem 2rem 2rem 0; border-right: 1px solid var(--line);
+  }
+  .skill-group:last-child { border-right: none; padding-right: 0; }
+  .skill-group:not(:first-child) { padding-left: 2rem; }
+  .skill-group-title {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 1.2rem;
+  }
+  .skill-list { list-style: none; }
+  .skill-list li {
+    font-size: 14px; color: var(--text2); padding: 0.35rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-list li:last-child { border-bottom: none; }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+  }
+  .project-item {
+    padding: 2.5rem; border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line); position: relative;
+    overflow: hidden; transition: background 0.2s;
+  }
+  .project-item:hover { background: var(--bg2); }
+  .project-item:nth-child(even) { border-right: none; }
+  .project-num {
+    font-size: 11px; color: var(--text3); letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  .project-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem; color: var(--text); margin-bottom: 0.8rem;
+  }
+  .project-desc { font-size: 13px; color: var(--text2); line-height: 1.7; }
+  .project-tech {
+    margin-top: 1rem; font-size: 11px; color: var(--accent);
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  }
+  .edu-item {
+    padding: 2rem 2rem 2rem 0; border-right: 1px solid var(--line);
+  }
+  .edu-item:last-child { border-right: none; }
+  .edu-item:not(:first-child) { padding-left: 2rem; }
+  .edu-degree {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem; color: var(--text); margin-bottom: 0.4rem;
+  }
+  .edu-school { font-size: 12px; color: var(--accent); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .edu-detail { font-size: 12px; color: var(--text3); }
+
+  /* CERTS */
+  .certs-list {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
+  }
+  .cert-item {
+    padding: 1.5rem; border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line); display: flex;
+    align-items: flex-start; gap: 1rem;
+  }
+  .cert-item:nth-child(even) { border-right: none; }
+  .cert-dot {
+    width: 6px; height: 6px; background: var(--accent);
+    border-radius: 50%; flex-shrink: 0; margin-top: 0.5rem;
+  }
+  .cert-name { font-size: 14px; color: var(--text); font-weight: 400; margin-bottom: 0.2rem; }
+  .cert-issuer { font-size: 12px; color: var(--text3); }
+
+  /* CONTACT */
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    align-items: center;
+  }
+  .contact-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--text); letter-spacing: -0.02em; line-height: 1.1;
+  }
+  .contact-headline em { font-style: italic; color: var(--accent); }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding-bottom: 1rem; border-bottom: 1px solid var(--line);
+    text-decoration: none; group: true; transition: gap 0.2s;
+  }
+  .contact-link:hover { gap: 2rem; }
+  .contact-link-label {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text3); min-width: 80px;
+  }
+  .contact-link-val { font-size: 14px; color: var(--text); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 12px; color: var(--text3); }
+
+  /* SOFT SKILLS */
+  .soft-skills-wrap {
+    display: flex; flex-wrap: wrap; gap: 0;
+  }
+  .soft-skill {
+    padding: 1rem 1.5rem; border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line); font-size: 13px; color: var(--text2);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 4rem 1.5rem; border-right: none; }
+    .hero-right { padding: 2rem 1.5rem; }
+    .hero-location { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .skills-wrapper, .edu-grid { grid-template-columns: 1fr; }
+    .skill-group, .edu-item { border-right: none; padding-left: 0; }
+    .projects-grid, .certs-list, .contact-inner { grid-template-columns: 1fr; }
+    .project-item:nth-child(even) { border-right: 1px solid var(--line); }
+    .cert-item:nth-child(even) { border-right: none; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">İK</a>
+  <ul class="nav-links">
+    <li><a href="#experience" data-tr="Deneyim" data-en="Experience">Experience</a></li>
+    <li><a href="#projects" data-tr="Projeler" data-en="Projects">Projects</a></li>
+    <li><a href="#skills" data-tr="Yetenekler" data-en="Skills">Skills</a></li>
+    <li><a href="#education" data-tr="Eğitim" data-en="Education">Education</a></li>
+    <li><a href="#contact" data-tr="İletişim" data-en="Contact">Contact</a></li>
+  </ul>
+  <div class="nav-controls">
+    <button class="lang-btn" id="langToggle">TR</button>
+    <button class="theme-btn" id="themeToggle">◐</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="border-top: none; padding: 0;">
+  <div class="hero-left">
+    <p class="hero-tag" data-tr="İstanbul, Türkiye — Müsait" data-en="Istanbul, Turkey — Available">Istanbul, Turkey — Available</p>
+    <h1 class="hero-name">İremsu<br><em>Kardaş</em></h1>
+    <p class="hero-title" data-tr="Business Analyst & Product Owner" data-en="Business Analyst & Product Owner">Business Analyst & Product Owner</p>
+    <p class="hero-desc" data-tr="Ürün geliştirme süreçlerini uçtan uca yöneten, teknik ekiplerle iş paydaşları arasında köprü kuran ve veri odaklı kararlarla ürün değeri yaratan bir BA & PO." data-en="An end-to-end product delivery professional bridging technical teams and business stakeholders, turning complex requirements into meaningful digital experiences with data-driven insight.">An end-to-end product delivery professional bridging technical teams and business stakeholders, turning complex requirements into meaningful digital experiences with data-driven insight.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary" data-tr="İletişime Geç" data-en="Get in Touch">Get in Touch</a>
+      <a href="#experience" class="btn-secondary" data-tr="Deneyime Bak →" data-en="View Experience →">View Experience →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <span class="hero-location">Istanbul · Turkey</span>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">4+</span>
+        <span class="stat-label" data-tr="Yıl Deneyim" data-en="Years Experience">Years Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-label" data-tr="Sertifika" data-en="Certifications">Certifications</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">2</span>
+        <span class="stat-label" data-tr="Çift Anadal" data-en="Double Major">Double Major</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">5+</span>
+        <span class="stat-label" data-tr="Büyük Proje" data-en="Major Projects">Major Projects</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title" data-tr="Deneyim" data-en="Experience">Experience</h2>
+  </div>
+  <div class="exp-grid">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-company">Garanti BBVA Technology</p>
+        <p class="exp-period" data-tr="Ağu 2024 – Günümüz" data-en="Aug 2024 – Present">Aug 2024 – Present</p>
+        <p class="exp-location">Istanbul, TR</p>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-role" data-tr="Business Analyst & Product Owner" data-en="Business Analyst & Product Owner">Business Analyst & Product Owner</h3>
+        <p class="exp-body" data-tr="Mobil bankacılık uygulaması özelliklerinin uçtan uca teslimatını yönetiyor; ürün backlog'larını ve yol haritalarını tanımlamak ve önceliklendirmek için paydaşlarla iş birliği yapıyor. İş ve kullanıcı gereksinimlerini toplayıp analiz ederek geliştirme ekipleri için aksiyona dönüştürülebilir kullanıcı hikayeleri oluşturuyor. Mobil Uygulama Yeniden Tasarım Projesi için sistem analizi, test ve canlıya geçiş faaliyetlerini denetliyor." data-en="Leads end-to-end delivery of mobile banking features, collaborating with stakeholders to define and prioritize product backlogs and roadmaps. Transforms business and user requirements into actionable user stories. Supervises system analysis, testing, and go-live for the Mobile App Redesign Project, improving onboarding and app stability.">Leads end-to-end delivery of mobile banking features, collaborating with stakeholders to define and prioritize product backlogs and roadmaps. Transforms business and user requirements into actionable user stories. Supervises system analysis, testing, and go-live for the Mobile App Redesign Project, improving onboarding and app stability.</p>
+        <div class="exp-tags">
+          <span class="tag">Agile / Scrum</span>
+          <span class="tag">Postman</span>
+          <span class="tag">Kibana</span>
+          <span class="tag">Splunk</span>
+          <span class="tag">Dataroid</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-company">Kofana Digital</p>
+        <p class="exp-period" data-tr="Ağu 2022 – Tem 2024" data-en="Aug 2022 – Jul 2024">Aug 2022 – Jul 2024</p>
+        <p class="exp-location">Istanbul, TR</p>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-role" data-tr="Business Analyst" data-en="Business Analyst">Business Analyst</h3>
+        <p class="exp-body" data-tr="Philip Morris International, Siemens ve Getir gibi farklı coğrafyalardaki müşteriler için iş analizi ve dokümantasyon hizmetleri sundu. Salesforce ve özel çözümler için değişiklik talep süreçlerini, UAT ve dağıtım desteğini yönetti." data-en="Delivered business analysis and documentation for clients across multiple geographies including Philip Morris International, Siemens, and Getir. Managed change request processes, UAT, and deployment support for Salesforce and custom solutions.">Delivered business analysis and documentation for clients across multiple geographies including Philip Morris International, Siemens, and Getir. Managed change request processes, UAT, and deployment support for Salesforce and custom solutions.</p>
+        <div class="exp-tags">
+          <span class="tag">Salesforce</span>
+          <span class="tag">Jira</span>
+          <span class="tag">Confluence</span>
+          <span class="tag">UAT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-company">SoftTech</p>
+        <p class="exp-period" data-tr="Haz 2021 – Eyl 2021" data-en="Jun 2021 – Sep 2021">Jun 2021 – Sep 2021</p>
+        <p class="exp-location" data-tr="Uzaktan" data-en="Remote">Remote</p>
+      </div>
+      <div class="exp-content">
+        <h3 class="exp-role" data-tr="Yazılım Mühendisliği Stajyeri" data-en="Software Engineering Intern">Software Engineering Intern</h3>
+        <p class="exp-body" data-tr="İç iş süreçlerini kolaylaştırmak için .NET full-stack web uygulaması geliştirdi ve dağıttı. Agile ortamında Flutter & Dart kullanarak mobil uygulama geliştirdi." data-en="Developed and deployed a .NET full-stack web application to streamline internal business processes. Built a mobile application using Flutter & Dart in an agile environment.">Developed and deployed a .NET full-stack web application to streamline internal business processes. Built a mobile application using Flutter & Dart in an agile environment.</p>
+        <div class="exp-tags">
+          <span class="tag">.NET</span>
+          <span class="tag">C#</span>
+          <span class="tag">Flutter</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title" data-tr="Projeler" data-en="Projects">Projects</h2>
+  </div>
+  <div class="projects-grid">
+    <div class="project-item">
+      <p class="project-num">01</p>
+      <h3 class="project-name" data-tr="Mobil Bankacılık Yeniden Tasarımı" data-en="Mobile Banking App Redesign">Mobile Banking App Redesign</h3>
+      <p class="project-desc" data-tr="Garanti BBVA için sistem analizi ve test faaliyetleriyle geliştirilmiş onboarding deneyimi ve uygulama stabilitesi." data-en="Improved onboarding experience and app stability through system analysis and testing at Garanti BBVA.">Improved onboarding experience and app stability through system analysis and testing at Garanti BBVA.</p>
+      <p class="project-tech">Garanti BBVA</p>
+    </div>
+    <div class="project-item">
+      <p class="project-num">02</p>
+      <h3 class="project-name">UniFriend</h3>
+      <p class="project-desc" data-tr="Üniversite öğrencilerinin bölüm ve sınıfa göre bağlantı kurmasını sağlayan MVC .NET sosyal platform." data-en="Social platform enabling university students to connect by department and class, built with MVC .NET.">Social platform enabling university students to connect by department and class, built with MVC .NET.</p>
+      <p class="project-tech">MVC .NET</p>
+    </div>
+    <div class="project-item">
+      <p class="project-num">03</p>
+      <h3 class="project-name" data-tr="Müşteri Segmentasyonu" data-en="Customer Segmentation">Customer Segmentation</h3>
+      <p class="project-desc" data-tr="Kullanıcı segmentasyonu için k-means kümeleme ve RFM skorlama uygulaması." data-en="Implemented k-means clustering and RFM scoring for user segmentation with visual dashboards.">Implemented k-means clustering and RFM scoring for user segmentation with visual dashboards.</p>
+      <p class="project-tech">Python · Looker Studio</p>
+    </div>
+    <div class="project-item">
+      <p class="project-num">04</p>
+      <h3 class="project-name" data-tr="Akademik İş İlanları Platformu" data-en="Academic Jobs Platform">Academic Jobs Platform</h3>
+      <p class="project-desc" data-tr="Akademik profesyoneller için özelleştirilmiş iş arama platformu tasarımı ve geliştirmesi." data-en="Designed and developed a specialized job search platform for academic professionals.">Designed and developed a specialized job search platform for academic professionals.</p>
+      <p class="project-tech">.NET · C#</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title" data-tr="Yetenekler" data-en="Skills">Skills</h2>
+  </div>
+  <div class="skills-wrapper">
+    <div class="skill-group">
+      <p class="skill-group-title" data-tr="Programlama & Veri" data-en="Programming & Data">Programming & Data</p>
+      <ul class="skill-list">
+        <li>Python</li>
+        <li>SQL</li>
+        <li>C / C++ / C#</li>
+        <li>.NET</li>
+        <li>HTML · CSS · JavaScript</li>
+        <li>Data Analysis</li>
+        <li>OOP · Algorithms</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title" data-tr="Araçlar" data-en="Tools">Tools</p>
+      <ul class="skill-list">
+        <li>Postman</li>
+        <li>Kibana</li>
+        <li>Splunk</li>
+        <li>Dataroid</li>
+        <li>Oracle</li>
+        <li>Jira · Confluence</li>
+        <li>Looker Studio</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title" data-tr="Platformlar & Soft Beceriler" data-en="Platforms & Soft Skills">Platforms & Soft Skills</p>
+      <ul class="skill-list">
+        <li>Salesforce</li>
+        <li data-tr="Analitik Düşünme" data-en="Analytical Thinking">Analytical Thinking</li>
+        <li data-tr="Paydaş Yönetimi" data-en="Stakeholder Management">Stakeholder Management</li>
+        <li data-tr="Takım Liderliği" data-en="Team Leadership">Team Leadership</li>
+        <li data-tr="Kriz Yönetimi" data-en="Crisis Management">Crisis Management</li>
+        <li data-tr="İletişim & Sunum" data-en="Communication & Presentation">Communication & Presentation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title" data-tr="Eğitim" data-en="Education">Education</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-item">
+      <p class="edu-school">İstanbul Teknik Üniversitesi</p>
+      <h3 class="edu-degree" data-tr="Bilgisayar Mühendisliği, Lisans" data-en="B.Sc. Computer Engineering">B.Sc. Computer Engineering</h3>
+      <p class="edu-detail">GPA 3.20 · 2024</p>
+    </div>
+    <div class="edu-item">
+      <p class="edu-school">İstanbul Teknik Üniversitesi</p>
+      <h3 class="edu-degree" data-tr="Endüstri Mühendisliği, Çift Anadal" data-en="B.Sc. Industrial Engineering (Double Major)">B.Sc. Industrial Engineering</h3>
+      <p class="edu-detail">GPA 3.23 · 2024</p>
+    </div>
+    <div class="edu-item">
+      <p class="edu-school">Cracow University of Technology</p>
+      <h3 class="edu-degree" data-tr="Erasmus Değişim Programı" data-en="Erasmus Exchange Program">Erasmus Exchange Program</h3>
+      <p class="edu-detail">2022</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 4rem;">
+    <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;" data-tr="Sertifikalar" data-en="Certifications">Certifications</p>
+    <div class="certs-list">
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <p class="cert-name" data-tr="Professional Scrum Product Owner I" data-en="Professional Scrum Product Owner I">Professional Scrum Product Owner I</p>
+          <p class="cert-issuer">Scrum.org</p>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <p class="cert-name" data-tr="Salesforce Administrator Sertifikası" data-en="Salesforce Administrator Certification">Salesforce Administrator Certification</p>
+          <p class="cert-issuer">Salesforce</p>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <p class="cert-name" data-tr="İş Analizi" data-en="Business Analysis">Business Analysis</p>
+          <p class="cert-issuer">Mindset Institute</p>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <p class="cert-name">McKinsey Forward</p>
+          <p class="cert-issuer">McKinsey Academy</p>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <p class="cert-name" data-tr="Yapay Zekanın Uygulamaları" data-en="Applications of Artificial Intelligence">Applications of Artificial Intelligence</p>
+          <p class="cert-issuer">Sadi Evren Şeker</p>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-dot"></div>
+        <div>
+          <p class="cert-name" data-tr="Dijital Pazarlama" data-en="Digital Marketing">Digital Marketing</p>
+          <p class="cert-issuer">ITU Alumni Student Club</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div>
+      <h2 class="contact-headline" data-tr="Birlikte<br>çalışalım" data-en="Let's work<br>together">Let's work<br>together</h2>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="tel:+905451560017">
+        <span class="contact-label contact-link-label" data-tr="Telefon" data-en="Phone">Phone</span>
+        <span class="contact-link-val">+90 545 156 0017</span>
+      </a>
+      <a class="contact-link" href="mailto:iremsukardas@gmail.com">
+        <span class="contact-label contact-link-label" data-tr="E-Posta" data-en="Email">Email</span>
+        <span class="contact-link-val">iremsukardas@gmail.com</span>
+      </a>
+      <a class="contact-link" href="https://linkedin.com/in/iremsukardas" target="_blank">
+        <span class="contact-label contact-link-label">LinkedIn</span>
+        <span class="contact-link-val">linkedin.com/in/iremsukardas</span>
+      </a>
+      <div class="contact-link" style="cursor: default;">
+        <span class="contact-link-label" data-tr="Konum" data-en="Location">Location</span>
+        <span class="contact-link-val" data-tr="İstanbul, Türkiye" data-en="Istanbul, Turkey">Istanbul, Turkey</span>
+      </div>
+      <div class="contact-link" style="cursor: default; border-bottom: none;">
+        <span class="contact-link-label" data-tr="Diller" data-en="Languages">Languages</span>
+        <span class="contact-link-val" data-tr="İngilizce (İleri), Türkçe (Anadil)" data-en="English (Professional), Turkish (Native)">English (Professional), Turkish (Native)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy" data-tr="© 2025 İremsu Kardaş. Tüm hakları saklıdır." data-en="© 2025 İremsu Kardaş. All rights reserved.">© 2025 İremsu Kardaş. All rights reserved.</span>
+  <span class="footer-copy" data-tr="İstanbul, Türkiye" data-en="Istanbul, Turkey">Istanbul, Turkey</span>
+</footer>
+
+<script>
+  const langToggle = document.getElementById('langToggle');
+  const themeToggle = document.getElementById('themeToggle');
+  let lang = 'en';
+  let dark = false;
+
+  langToggle.addEventListener('click', () => {
+    lang = lang === 'en' ? 'tr' : 'en';
+    langToggle.textContent = lang === 'en' ? 'TR' : 'EN';
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val) el.innerHTML = val;
+    });
+  });
+
+  themeToggle.addEventListener('click', () => {
+    dark = !dark;
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
+  });
+
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (el) {
+        e.preventDefault();
+        window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
