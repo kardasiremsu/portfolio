@@ -187,6 +187,20 @@
     margin-bottom: 1rem; letter-spacing: -0.01em;
   }
   .exp-body { font-size: 14px; color: var(--text2); line-height: 1.8; }
+  .exp-bullets {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .exp-bullets li {
+    font-size: 14px; color: var(--text2); line-height: 1.75;
+    padding-left: 1.2rem; position: relative;
+  }
+  .exp-bullets li::before {
+    content: '–'; position: absolute; left: 0;
+    color: var(--accent); font-weight: 500;
+  }
+  .exp-bullets li strong { color: var(--text); font-weight: 500; }
+  .exp-bullets li em { font-style: normal; color: var(--accent); font-size: 13px; }
   .exp-tags {
     display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;
   }
@@ -315,20 +329,34 @@
   }
 
   @media (max-width: 768px) {
+    html, body { overflow-x: hidden; }
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
     .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 4rem 1.5rem; border-right: none; }
-    .hero-right { padding: 2rem 1.5rem; }
+    .hero-left { padding: 5rem 1.5rem 3rem; border-right: none; }
+    .hero-right { padding: 2rem 1.5rem 3rem; }
     .hero-location { display: none; }
-    section { padding: 4rem 1.5rem; }
+    .hero-name { font-size: 2.8rem; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    section { padding: 3rem 1.5rem; }
     .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .exp-meta { padding-bottom: 0.5rem; border-bottom: 1px solid var(--line); }
     .skills-wrapper, .edu-grid { grid-template-columns: 1fr; }
-    .skill-group, .edu-item { border-right: none; padding-left: 0; }
-    .projects-grid, .certs-list, .contact-inner { grid-template-columns: 1fr; }
-    .project-item:nth-child(even) { border-right: 1px solid var(--line); }
-    .cert-item:nth-child(even) { border-right: none; }
+    .skill-group { border-right: none; padding-left: 0; padding-right: 0; border-bottom: 1px solid var(--line); }
+    .skill-group:last-child { border-bottom: none; }
+    .edu-item { border-right: none; padding-left: 0; padding-right: 0; border-bottom: 1px solid var(--line); }
+    .edu-item:last-child { border-bottom: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-item { border-right: none !important; }
+    .certs-list { grid-template-columns: 1fr; }
+    .cert-item { border-right: none !important; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-headline { font-size: 2rem; }
+    .section-title { font-size: 1.8rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .hero-cta { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .exp-tags { gap: 0.4rem; }
+    .tag { font-size: 10px; }
   }
 </style>
 </head>
@@ -651,9 +679,50 @@
     },
     contact: { email: 'kardasiremsu@gmail.com', phone: '+90 545 156 0017', linkedin: 'https://linkedin.com/in/iremsu-kardas', github: '', location_tr: 'İstanbul, Türkiye', location_en: 'Istanbul, Turkey' },
     experience: [
-      { company: 'Garanti BBVA Technology', location: 'Istanbul, TR', period_tr: 'Ağu 2024 – Günümüz', period_en: 'Aug 2024 – Present', role_tr: 'İş Analisti & Ürün Sahibi', role_en: 'Business Analyst & Product Owner', body_tr: 'Mobil bankacılık uygulaması özelliklerinin uçtan uca teslimatını yönetiyor; ürün backlog\'larını ve yol haritalarını tanımlamak ve önceliklendirmek için paydaşlarla iş birliği yapıyor.', body_en: 'Leads end-to-end delivery of mobile banking features, collaborating with stakeholders to define and prioritize product backlogs and roadmaps.', tags: 'Agile / Scrum,Postman,Kibana,Splunk,Dataroid,SQL' },
-      { company: 'Kofana Digital', location: 'Istanbul, TR', period_tr: 'Ağu 2022 – Tem 2024', period_en: 'Aug 2022 – Jul 2024', role_tr: 'İş Analisti', role_en: 'Business Analyst', body_tr: 'Philip Morris International, Siemens ve Getir gibi farklı coğrafyalardaki müşteriler için iş analizi ve dokümantasyon hizmetleri sundu.', body_en: 'Delivered business analysis and documentation for clients across multiple geographies including Philip Morris International, Siemens, and Getir.', tags: 'Salesforce,Jira,Confluence,UAT' },
-      { company: 'SoftTech', location_tr: 'Uzaktan', location_en: 'Remote', period_tr: 'Haz 2021 – Eyl 2021', period_en: 'Jun 2021 – Sep 2021', role_tr: 'Yazılım Mühendisliği Stajyeri', role_en: 'Software Engineering Intern', body_tr: 'İç iş süreçlerini kolaylaştırmak için .NET full-stack web uygulaması geliştirdi.', body_en: 'Developed and deployed a .NET full-stack web application to streamline internal business processes.', tags: '.NET,C#,Flutter,JavaScript' }
+      { company: 'Garanti BBVA Technology', location_tr: 'İstanbul, TR', location_en: 'Istanbul, TR', period_tr: 'Ağu 2024 – Günümüz', period_en: 'Aug 2024 – Present', role_tr: 'İş Analisti & Ürün Sahibi', role_en: 'Business Analyst & Product Owner',
+        bullets_tr: [
+          'Mobil bankacılık uygulaması özelliklerinin <strong>uçtan uca teslimatını</strong> yönetiyor; paydaşlarla iş birliği yaparak ürün backlog\'larını ve yol haritalarını tanımlıyor ve önceliklendiriyor.',
+          'İş ve kullanıcı gereksinimlerini toplayıp analiz ederek geliştirme ekipleri için <strong>aksiyona dönüştürülebilir kullanıcı hikayeleri</strong> oluşturuyor.',
+          'Teknik ve teknik olmayan ekipler arasındaki iletişimi güçlendirerek yüksek kaliteli sürümlerin zamanında teslimini sağlıyor.',
+          '<strong>Agile seremonilerini</strong> (stand-up, sprint planlama, inceleme, retrospektif) kolaylaştırıyor.',
+          '<strong>Mobil Uygulama Yeniden Tasarım Projesi</strong> kapsamında sistem analizi, test ve canlıya geçiş süreçlerini denetleyerek kesintisiz kullanıcı deneyimi ve gelişmiş uygulama stabilitesi sağlıyor.',
+          '<em>Postman</em> ve <em>SQL</em> ile testler gerçekleştiriyor; <em>Kibana</em> ve <em>Splunk</em> üzerinden logları izleyerek üretim sorunlarını çözüyor.',
+          '<em>Dataroid</em> ile kullanıcı analitiği yaparak müşteri kazanımı ve etkileşimini optimize etmeye yönelik içgörüler üretiyor.'
+        ],
+        bullets_en: [
+          'Leads <strong>end-to-end delivery</strong> of mobile banking app features, collaborating with stakeholders to define and prioritize product backlogs and roadmaps.',
+          'Gathers and analyzes business and user requirements, transforming them into <strong>actionable user stories</strong> for development teams.',
+          'Fosters communication between technical and non-technical teams, ensuring timely delivery of high-quality releases.',
+          'Facilitates <strong>agile ceremonies</strong> including stand-ups, sprint planning, reviews, and retrospectives.',
+          'Supervises system analysis, testing, and go-live for the <strong>Mobile App Redesign Project</strong>, contributing to a seamless onboarding experience and improved app stability.',
+          'Conducts backend and client-side tests via <em>Postman</em> & <em>SQL</em>; monitors logs through <em>Kibana</em> and <em>Splunk</em> to resolve production issues.',
+          'Utilizes <em>Dataroid</em> for user analytics to generate insights that optimize customer acquisition and engagement.'
+        ],
+        tags: 'Agile / Scrum,Postman,Kibana,Splunk,Dataroid,SQL' },
+      { company: 'Kofana Digital', location_tr: 'İstanbul, TR', location_en: 'Istanbul, TR', period_tr: 'Ağu 2022 – Tem 2024', period_en: 'Aug 2022 – Jul 2024', role_tr: 'İş Analisti', role_en: 'Business Analyst',
+        bullets_tr: [
+          '<strong>Philip Morris International, Siemens ve Getir</strong> gibi farklı coğrafyalardaki müşteriler için iş analizi ve dokümantasyon hizmetleri sundu.',
+          'Salesforce ve özel çözümler için <strong>değişiklik talep süreçlerini</strong> yönetti; test senaryoları oluşturdu, UAT ve dağıtım desteği sağladı.',
+          'Ürün yöneticileri ve geliştiricilerle iş birliği yaparak iş ihtiyaçlarını <strong>teknik gereksinimlere</strong> dönüştürdü.',
+          'Süreç yeniden yapılandırma ve sistem entegrasyon girişimlerine destek vererek <strong>müşteri memnuniyetini ve operasyonel verimliliği</strong> artırdı.'
+        ],
+        bullets_en: [
+          'Delivered business analysis and documentation for global clients including <strong>Philip Morris International, Siemens, and Getir</strong>.',
+          'Defined and managed <strong>change request processes</strong> including test case creation, UAT, and deployment support for Salesforce and custom solutions.',
+          'Collaborated with product managers and developers to translate business needs into <strong>technical specifications</strong>.',
+          'Supported process re-engineering and system integration initiatives, improving <strong>client satisfaction and operational efficiency</strong>.'
+        ],
+        tags: 'Salesforce,Jira,Confluence,UAT' },
+      { company: 'SoftTech', location_tr: 'Uzaktan', location_en: 'Remote', period_tr: 'Haz 2021 – Eyl 2021', period_en: 'Jun 2021 – Sep 2021', role_tr: 'Yazılım Mühendisliği Stajyeri', role_en: 'Software Engineering Intern',
+        bullets_tr: [
+          'Dahili iş süreçlerini kolaylaştırmak amacıyla <em>HTML, CSS, C#</em> ve <em>JavaScript</em> kullanarak <strong>.NET full-stack web uygulaması</strong> geliştirdi ve canlıya aldı.',
+          'Agile metodolojisiyle yürütülen bir ortamda <em>Flutter</em> ve <em>Dart</em> kullanarak <strong>mobil uygulama</strong> geliştirdi; sprint planlaması ve kod incelemelerine aktif olarak katıldı.'
+        ],
+        bullets_en: [
+          'Developed and deployed a <strong>.NET full-stack web application</strong> using <em>HTML, CSS, C#</em>, and <em>JavaScript</em> to streamline internal business processes.',
+          'Built a <strong>mobile application</strong> using <em>Flutter</em> and <em>Dart</em> in an agile environment, actively participating in sprint planning and code reviews.'
+        ],
+        tags: '.NET,C#,Flutter,JavaScript' }
     ],
     projects: [
       { name_tr: 'Mobil Bankacılık Yeniden Tasarımı', name_en: 'Mobile Banking App Redesign', desc_tr: 'Garanti BBVA için sistem analizi ve test faaliyetleriyle geliştirilmiş onboarding deneyimi.', desc_en: 'Improved onboarding experience and app stability through system analysis and testing at Garanti BBVA.', tech: 'Garanti BBVA' },
@@ -725,7 +794,9 @@
 
     // Experience
     const expGrid = document.querySelector('.exp-grid');
-    expGrid.innerHTML = D.experience.map(e => `
+    expGrid.innerHTML = D.experience.map(e => {
+      const bullets = e['bullets_' + lang] || (e['body_' + lang] ? [e['body_' + lang]] : []);
+      return `
       <div class="exp-item">
         <div class="exp-meta">
           <p class="exp-company">${e.company}</p>
@@ -734,10 +805,11 @@
         </div>
         <div class="exp-content">
           <h3 class="exp-role">${e['role_' + lang]}</h3>
-          <p class="exp-body">${e['body_' + lang]}</p>
+          <ul class="exp-bullets">${bullets.map(b => `<li>${b}</li>`).join('')}</ul>
           <div class="exp-tags">${(e.tags || '').split(',').filter(Boolean).map(t => `<span class="tag">${t.trim()}</span>`).join('')}</div>
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
 
     // Projects
     const projGrid = document.querySelector('.projects-grid');
