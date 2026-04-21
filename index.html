@@ -362,7 +362,7 @@
     </div>
   </div>
   <div class="hero-right">
-    <span class="hero-location">Istanbul · Turkey</span>
+    <span class="hero-location" id="hero-location">Istanbul · Turkey</span>
     <div class="hero-stats">
       <div class="stat-item">
         <span class="stat-num">4+</span>
@@ -649,7 +649,7 @@
       desc_en: 'An end-to-end product delivery professional bridging technical teams and business stakeholders, turning complex requirements into meaningful digital experiences with data-driven insight.',
       stat_years: '4+', stat_certs: '3', stat_projects: '5+'
     },
-    contact: { email: 'iremsukardas@gmail.com', phone: '+90 545 156 0017', linkedin: 'https://linkedin.com/in/iremsukardas', github: '', location_tr: 'İstanbul, Türkiye', location_en: 'Istanbul, Turkey' },
+    contact: { email: 'kardasiremsu@gmail.com', phone: '+90 545 156 0017', linkedin: 'https://linkedin.com/in/iremsu-kardas', github: '', location_tr: 'İstanbul, Türkiye', location_en: 'Istanbul, Turkey' },
     experience: [
       { company: 'Garanti BBVA Technology', location: 'Istanbul, TR', period_tr: 'Ağu 2024 – Günümüz', period_en: 'Aug 2024 – Present', role_tr: 'İş Analisti & Ürün Sahibi', role_en: 'Business Analyst & Product Owner', body_tr: 'Mobil bankacılık uygulaması özelliklerinin uçtan uca teslimatını yönetiyor; ürün backlog\'larını ve yol haritalarını tanımlamak ve önceliklendirmek için paydaşlarla iş birliği yapıyor.', body_en: 'Leads end-to-end delivery of mobile banking features, collaborating with stakeholders to define and prioritize product backlogs and roadmaps.', tags: 'Agile / Scrum,Postman,Kibana,Splunk,Dataroid,SQL' },
       { company: 'Kofana Digital', location: 'Istanbul, TR', period_tr: 'Ağu 2022 – Tem 2024', period_en: 'Aug 2022 – Jul 2024', role_tr: 'İş Analisti', role_en: 'Business Analyst', body_tr: 'Philip Morris International, Siemens ve Getir gibi farklı coğrafyalardaki müşteriler için iş analizi ve dokümantasyon hizmetleri sundu.', body_en: 'Delivered business analysis and documentation for clients across multiple geographies including Philip Morris International, Siemens, and Getir.', tags: 'Salesforce,Jira,Confluence,UAT' },
@@ -694,6 +694,8 @@
     document.querySelector('.hero-title').textContent = h['title_' + lang];
     document.querySelector('.hero-desc').textContent = h['desc_' + lang];
     document.querySelector('.hero-tag').textContent = D.contact['location_' + lang] + ' — ' + (lang === 'tr' ? 'Müsait' : 'Available');
+
+    document.getElementById('hero-location').textContent = lang === 'tr' ? 'İstanbul · Türkiye' : 'Istanbul · Turkey';
 
     const nums = document.querySelectorAll('.stat-num');
     const labels = document.querySelectorAll('.stat-label');
